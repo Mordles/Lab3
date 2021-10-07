@@ -36,7 +36,6 @@ while True:
   x_position = Joystick_position.getX()
   y_position = Joystick_position.getY()
   print('{:d}, {:d}'.format(x_position,y_position))
-  print(y_position)
   sleep(.1)
   
 
