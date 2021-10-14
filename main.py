@@ -36,14 +36,17 @@ class Joystick:
     return self.address.read(1)
 
 # loop to continuously read the x and y positions of joystick
-while True:
-  # create object with defined instance variable
-  Joystick_position = Joystick(0X48)
-  # access class methods and print x and y positions of joystick
-  x_position = Joystick_position.getX()
-  y_position = Joystick_position.getY()
-  print('{:d}, {:d}'.format(x_position,y_position))
-  sleep(.1)
-  
-
-
+# use exception handling 
+try:
+  while True:
+    # create object with defined instance variable
+    Joystick_position = Joystick(0X48)
+    # access class methods and print x and y positions of joystick
+    x_position = Joystick_position.getX()
+    y_position = Joystick_position.getY()
+    print('{:d}, {:d}'.format(x_position,y_position))
+    sleep(.1)
+except KeyboardInterrupt:
+  print('\nExiting')
+except Exception as e:
+  print('\e')
