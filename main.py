@@ -22,17 +22,24 @@ class PCF8591:
       except Exception as e:
           print ("Error: Device address: 0x%2X \n%s" % (self.address,e))
 
-
+# create Joystick class
 class Joystick:
-  def __init__(self, address):
-    self.PCF8591 = PCF8591(address)
-  def getX(self):
-    return self.PCF8591.read(0)
-  def getY(self):
-    return self.PCF8591.read(1)
 
+  def __init__(self, address):
+    # instantiation code
+    # extend PCF8591 class to Joystick class through composition
+    self.address = PCF8591(address)
+  # class methods to read and return analog pins 0 and 1 of ADC
+  def getX(self):
+    return self.address.read(0)
+  def getY(self):
+    return self.address.read(1)
+
+# loop to continuously read the x and y positions of joystick
 while True:
+  # create object with defined instance variable
   Joystick_position = Joystick(0X48)
+  # access class methods and print x and y positions of joystick
   x_position = Joystick_position.getX()
   y_position = Joystick_position.getY()
   print('{:d}, {:d}'.format(x_position,y_position))
